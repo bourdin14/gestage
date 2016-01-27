@@ -1,0 +1,5 @@
+Reference de groupe : G3
+
+utiliser Jasper pour imprimer des pdf avec java.
+
+ajouter une suppression des entreprises et des stages.
