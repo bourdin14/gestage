@@ -15,7 +15,7 @@ import java.awt.*;
 public class Inscription extends JPanel {
     JLabel titre, login, mdp;
     static JTextField champLogin, champMdp;
-    JButton valider, inscription;
+    JButton valider;
     
     public Inscription() {
         setLayout(new GridBagLayout());
@@ -24,7 +24,7 @@ public class Inscription extends JPanel {
         setBackground(Color.orange);
 
         // Affichage du titre
-        titre = new JLabel("Connexion");
+        titre = new JLabel("S'inscrire");
         Font font = new Font("Arial", Font.PLAIN, 25);
         titre.setFont(font);
         gbc.gridx = 0;
@@ -59,16 +59,8 @@ public class Inscription extends JPanel {
         gbc.insets = new Insets(5, 10, 0, 10);
         add(champMdp, gbc);
 
-        valider = new JButton("Connexion");
+        valider = new JButton("S'inscrire");
         gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weightx = 0;
-        gbc.gridwidth = 2;
-        gbc.insets = new Insets(5, 0, 10, 10);
-        add(valider, gbc);
-        
-        inscription = new JButton("Inscription");
-        gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.weightx = 0;
         gbc.gridwidth = 2;

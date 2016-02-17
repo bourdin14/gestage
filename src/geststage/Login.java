@@ -66,7 +66,7 @@ public class Login extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 0;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.insets = new Insets(5, 0, 10, 10);
         add(valider, gbc);
         
@@ -74,9 +74,9 @@ public class Login extends JPanel {
         gbc.gridx = 1;
         gbc.gridy = 3;
         gbc.weightx = 0;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.insets = new Insets(5, 0, 10, 10);
-        add(valider, gbc);
+        add(inscription, gbc);
 
         valider.addActionListener(new BoutonConnexion(champLogin, champMdp));
         inscription.addActionListener(new BoutonInscription());
