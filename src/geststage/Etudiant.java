@@ -16,7 +16,7 @@ public class Etudiant extends JPanel {
 
     JButton listePost, listeOffr;
 
-    public Etudiant(int id) {
+    public Etudiant(int id, MySQLConnexion BDDConnexion) {
 
         setBackground(Color.orange);
 
@@ -39,8 +39,8 @@ public class Etudiant extends JPanel {
         gbc.insets = new Insets(5, 0, 10, 10);
         add(listePost, gbc);
         
-        listeOffr.addActionListener(new BoutonListe(false, "offre"));
-        listePost.addActionListener(new BoutonPost(id));
+        listeOffr.addActionListener(new BoutonListe(false, "offre", BDDConnexion));
+        listePost.addActionListener(new BoutonPost(id, BDDConnexion));
     }
 
 }

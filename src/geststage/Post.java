@@ -16,7 +16,7 @@ public class Post extends JPanel {
 
     JLabel titre;
 
-    public Post(int id) {
+    public Post(int id, MySQLConnexion BDDConnexion) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

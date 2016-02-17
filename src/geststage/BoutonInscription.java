@@ -12,11 +12,14 @@ import java.awt.event.*;
  */
 public class BoutonInscription implements ActionListener {
     
-    public BoutonInscription() {
+    MySQLConnexion bdd;
+    
+    public BoutonInscription(MySQLConnexion BDDConnexion) {
+        bdd = BDDConnexion;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelInscription();
+        Fenetre.panelInscription(bdd);
     }
 
 }

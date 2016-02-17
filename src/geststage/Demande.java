@@ -16,7 +16,7 @@ public class Demande extends JPanel {
 
     JLabel titre;
 
-    public Demande() {
+    public Demande(MySQLConnexion BDDConnexion) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

@@ -17,7 +17,7 @@ public class Inscription extends JPanel {
     static JTextField champLogin, champMdp;
     JButton valider;
     
-    public Inscription() {
+    public Inscription(MySQLConnexion BDDConnexion) {
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -67,6 +67,6 @@ public class Inscription extends JPanel {
         gbc.insets = new Insets(5, 0, 10, 10);
         add(valider, gbc);
 
-        valider.addActionListener(new BoutonValiderInsc(champLogin, champMdp));
+        valider.addActionListener(new BoutonValiderInsc(champLogin, champMdp, BDDConnexion));
     }
 }

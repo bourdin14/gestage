@@ -14,7 +14,7 @@ public class BoutonValiderInsc implements ActionListener {
 
     String login, mdp;
     
-    public BoutonValiderInsc(JTextField champLogin, JTextField champMdp) {
+    public BoutonValiderInsc(JTextField champLogin, JTextField champMdp, MySQLConnexion BDDConnexion) {
         login = champLogin.getText();
         mdp = champMdp.getText();
     }

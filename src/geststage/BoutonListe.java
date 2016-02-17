@@ -14,14 +14,16 @@ public class BoutonListe implements ActionListener {
 
     String typeListe;
     boolean isAdmin;
+    MySQLConnexion bdd;
     
-    public BoutonListe(boolean paramIsAdmin, String paramTypeListe) {
+    public BoutonListe(boolean paramIsAdmin, String paramTypeListe, MySQLConnexion BDDConnexion) {
         typeListe = paramTypeListe;
         isAdmin = paramIsAdmin;
+        bdd = BDDConnexion;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelListe(isAdmin, typeListe);
+        Fenetre.panelListe(isAdmin, typeListe, bdd);
     }
 
 }

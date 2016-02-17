@@ -16,7 +16,7 @@ public class Liste extends JPanel {
 
     JLabel titre;
     
-    public Liste(boolean isAdmin, String typeListe) {
+    public Liste(boolean isAdmin, String typeListe, MySQLConnexion BDDConnexion) {
     
         
         setLayout(new GridBagLayout());

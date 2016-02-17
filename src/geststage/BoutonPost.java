@@ -13,12 +13,15 @@ import java.awt.event.*;
 public class BoutonPost implements ActionListener {
 
     int id;
-    public BoutonPost(int paramId) {
+    MySQLConnexion bdd;
+    
+    public BoutonPost(int paramId, MySQLConnexion BDDConnexion) {
         id = paramId;
+        bdd = BDDConnexion;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelPost(id);
+        Fenetre.panelPost(id, bdd);
     }
 
 }

@@ -12,12 +12,14 @@ import java.awt.event.*;
  */
 public class BoutonDem implements ActionListener {
 
+    MySQLConnexion bdd;
     
-    public BoutonDem() {
+    public BoutonDem(MySQLConnexion BDDConnexion) {
+        bdd = BDDConnexion;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelDemande();
+        Fenetre.panelDemande(bdd);
     }
 
 }

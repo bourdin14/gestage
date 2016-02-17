@@ -16,7 +16,7 @@ public class Admin extends JPanel {
 
     JButton listeEntr, listeOffr, listeDem;
 
-    public Admin() {
+    public Admin(MySQLConnexion BDDConnexion) {
 
         setBackground(Color.orange);
 
@@ -47,9 +47,9 @@ public class Admin extends JPanel {
         gbc.insets = new Insets(5, 0, 10, 10);
         add(listeDem, gbc);
         
-        listeEntr.addActionListener(new BoutonListe(true, "entreprise"));
-        listeOffr.addActionListener(new BoutonListe(true, "offre"));
-        listeDem.addActionListener(new BoutonDem());
+        listeEntr.addActionListener(new BoutonListe(true, "entreprise", BDDConnexion));
+        listeOffr.addActionListener(new BoutonListe(true, "offre", BDDConnexion));
+        listeDem.addActionListener(new BoutonDem(BDDConnexion));
     }
 
 }

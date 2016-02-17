@@ -19,7 +19,7 @@ public class Login extends JPanel {
     JButton valider, inscription;
 
     /* Affichage de l'accueil */
-    public Login() {
+    public Login(MySQLConnexion BDDConnexion) {
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -78,7 +78,7 @@ public class Login extends JPanel {
         gbc.insets = new Insets(5, 0, 10, 10);
         add(inscription, gbc);
 
-        valider.addActionListener(new BoutonConnexion(champLogin, champMdp));
-        inscription.addActionListener(new BoutonInscription());
+        valider.addActionListener(new BoutonConnexion(champLogin, champMdp, BDDConnexion));
+        inscription.addActionListener(new BoutonInscription(BDDConnexion));
     }
 }

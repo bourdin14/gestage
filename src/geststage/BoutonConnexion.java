@@ -13,16 +13,18 @@ import java.awt.event.*;
 public class BoutonConnexion implements ActionListener {
 
     String login, mdp;
+    MySQLConnexion bdd;
+    Object[] user;
     
-    public BoutonConnexion(JTextField champLogin, JTextField champMdp) {
+    public BoutonConnexion(JTextField champLogin, JTextField champMdp, MySQLConnexion BDDConnexion) {
         login = champLogin.getText();
         mdp = champMdp.getText();
+        bdd = BDDConnexion;
     }
     
     public void actionPerformed(ActionEvent e) {
-        // verification BDD
-        int id = 5;
-        Fenetre.panelEtudiant(id);
+        user = bdd.requeteLogin(login, mdp);
+        Fenetre.panelEtudiant((Integer)user[0], bdd);
         //Fenetre.panelAdmin();
     }
 
