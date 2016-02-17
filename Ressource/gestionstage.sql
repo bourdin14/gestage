@@ -2,8 +2,8 @@
 -- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Client :  localhost
--- Généré le :  Mer 17 Février 2016 à 10:10
+-- Client :  localhost:8889
+-- Généré le :  Mer 17 Février 2016 à 12:13
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -69,17 +69,17 @@ CREATE TABLE `stage` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `idAdmin` tinyint(1) NOT NULL DEFAULT '0',
+  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `login` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `user`
 --
 
-INSERT INTO `user` (`id`, `idAdmin`, `login`, `password`) VALUES
-(2, 0, 'Jean-Christophe', '1234');
+INSERT INTO `user` (`id`, `isAdmin`, `login`, `password`) VALUES
+(2, 0, 'jean', '1234');
 
 --
 -- Index pour les tables exportées
@@ -135,7 +135,7 @@ ALTER TABLE `stage`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Contraintes pour les tables exportées
 --
