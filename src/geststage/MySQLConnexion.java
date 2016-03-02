@@ -48,21 +48,22 @@ class MySQLConnexion {
     }
 
     /* Methode permettant de rechercher dans la BDD le login et le mot de passe */
-    public Object[] requeteLogin(String paramLogin, String paramMdp) {
+    public String[] requeteLogin(String paramLogin, String paramMdp) {
 
         ResultSet rs = null;
         String login, mdp;
         int id, isAdmin;
-        Object[] res = new Object[4];
-       
+        String[] res = new String[4];
+       System.out.println("Login = "+paramLogin+"    mdp = "+paramMdp);
         try {
             rs = declaration.executeQuery("SELECT * FROM user WHERE login = '" + paramLogin + "' AND password = '" + paramMdp+"'");
-            res[0] = rs.getInt(1);
-            res[1] = rs.getInt(2);
+            res[0] = Integer.toString(rs.getInt(1));
+            System.out.println("OK");
+            res[1] = Integer.toString(rs.getInt(2));
             res[2] = rs.getString(3);
-            res[3] = rs.getString(4);   
+            res[3] = rs.getString(4);
             rs.close();
-            System.out.println("Login : "+res[0]);
+            System.out.println("Login : "+res[2]);
         } catch (SQLException e) {
             System.err.println("Requete ou recuperation echouee !");
             System.err.println(e.getMessage());

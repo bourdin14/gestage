@@ -14,7 +14,7 @@ public class BoutonConnexion implements ActionListener {
 
     String login, mdp;
     MySQLConnexion bdd;
-    Object[] user;
+    String[] user;
     
     public BoutonConnexion(JTextField champLogin, JTextField champMdp, MySQLConnexion BDDConnexion) {
         login = champLogin.getText();
@@ -24,7 +24,7 @@ public class BoutonConnexion implements ActionListener {
     
     public void actionPerformed(ActionEvent e) {
         user = bdd.requeteLogin(login, mdp);
-        Fenetre.panelEtudiant((Integer)user[0], bdd);
+        Fenetre.panelEtudiant(Integer.parseInt(user[0]), bdd);
         //Fenetre.panelAdmin();
     }
 
