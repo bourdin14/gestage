@@ -17,7 +17,7 @@ public class Fenetre extends JFrame {
     private static JLabel titre;
     private static JPanel content;
     private static CardLayout cardLayout;
-    static JPanel[] panels = new JPanel[8];
+    static JPanel[] panels = new JPanel[9];
     MySQLConnexion BDDConnexion = new MySQLConnexion();
 
     /* Creation de la fenetre et des CardLayout */
@@ -80,6 +80,12 @@ public class Fenetre extends JFrame {
         panels[6] = new Inscription(BDDConnexion);
         content.add(panels[6], "Inscription");
         cardLayout.show(content, "Inscription");
+    }
+    
+    public static void panelDescriptif(MySQLConnexion BDDConnexion, String[] offre) {
+        panels[7] = new Descriptif(BDDConnexion, offre);
+        content.add(panels[7], "Descriptif");
+        cardLayout.show(content, "Descriptif");
     }
    
 }

@@ -15,6 +15,8 @@ import java.awt.*;
 public class Liste extends JPanel {
 
     JLabel titre;
+    JPanel espaceListe;
+    JScrollPane espaceScroll;
     
     public Liste(boolean isAdmin, String typeListe, MySQLConnexion BDDConnexion) {
     
@@ -68,15 +70,46 @@ public class Liste extends JPanel {
                 gbc.gridwidth = 1;
             }
         } else {
+            // Affiche Titre
             titre = new JLabel("Liste Offres etudiant");
-                Font font = new Font("Arial", Font.PLAIN, 25);
-                titre.setFont(font);
-                gbc.gridx = 0;
-                gbc.gridy = 0;
-                gbc.gridwidth = 2;
-                gbc.insets = new Insets(20, 20, 20, 20);
-                add(titre, gbc);
-                gbc.gridwidth = 1;
+            Font font = new Font("Arial", Font.PLAIN, 25);
+            titre.setFont(font);
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 2;
+            gbc.insets = new Insets(20, 20, 20, 20);
+            add(titre, gbc);
+            gbc.gridwidth = 1;
+                
+            // Affiche la liste des offres
+            espaceListe = new JPanel();
+            espaceListe.setLayout(new GridBagLayout());
+            GridBagConstraints gbcEspaceListe = new GridBagConstraints();
+            espaceScroll = new JScrollPane(espaceListe);
+            espaceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+            espaceScroll.setPreferredSize(new Dimension(500, 250));
+            
+            // Affichage du bouton selectionner
+            String[][] liste = new String[9][];
+            JButton[] boutonsSelect = new JButton[BDDConnexion.getNombreOffres()];
+            liste = BDDConnexion.getListeOffres();
+            for (int i=0; i<BDDConnexion.getNombreOffres(); i++) {
+                gbcEspaceListe.insets = new Insets(2, 2, 2, 2);
+                
+                gbcEspaceListe.gridx=0;
+                gbcEspaceListe.gridy=i;
+                espaceListe.add(new JLabel(liste[1][i]), gbcEspaceListe);
+
+                gbcEspaceListe.gridx=1;
+                gbcEspaceListe.gridy=i;
+                boutonsSelect[i] = new JButton("S\u00E9lectionner");
+                espaceListe.add(boutonsSelect[i], gbcEspaceListe);
+                boutonsSelect[i].addActionListener(new BoutonSelectionListeOffres(BDDConnexion, i, liste));
+            }
+            
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            add(espaceScroll, gbc);
         }
     }
 }
