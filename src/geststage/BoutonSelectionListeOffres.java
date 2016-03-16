@@ -16,18 +16,20 @@ public class BoutonSelectionListeOffres implements ActionListener {
     int ind;
     String [][] liste;
     String[] offre = new String[9];
+    String[] user;
     
-    public BoutonSelectionListeOffres(MySQLConnexion BDDConnexion, int paramInd, String[][] paramListe) {
+    public BoutonSelectionListeOffres(MySQLConnexion BDDConnexion, int paramInd, String[][] paramListe, String[] paramUser) {
         bdd = BDDConnexion;
         ind = paramInd;
         liste = paramListe;
+        user = paramUser;
     }
     
     public void actionPerformed(ActionEvent e) {
         for (int i=0; i<9; i++) {
             offre[i] = liste[i][ind];
         }
-        Fenetre.panelDescriptif(bdd, offre);
+        Fenetre.panelDescriptif(bdd, offre, user, false);
     }
 
 }

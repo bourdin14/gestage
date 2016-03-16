@@ -10,21 +10,19 @@ import java.awt.event.*;
  *
  * @author valentinbocquel
  */
-public class BoutonPostuler implements ActionListener {
+public class BoutonRetourOffre implements ActionListener {
 
     MySQLConnexion bdd;
-    String[] offre, user;
+    String[] user;
     
-    public BoutonPostuler(MySQLConnexion BDDConnexion, String[] paramOffre, String[] paramUser) {
+    public BoutonRetourOffre(MySQLConnexion BDDConnexion, String[] paramUser) {
         bdd = BDDConnexion;
-        offre = paramOffre;
         user = paramUser;
     }
     
     public void actionPerformed(ActionEvent e) {
-        bdd.addPostulation(offre, user);
-        JOptionPane.showMessageDialog(null, "Votre postulation a bien \u00E9t\u00E9 prise en compte", "Information", JOptionPane.INFORMATION_MESSAGE); // j'affiche un popup.
         Fenetre.panelListe(false, "Liste Offres etudiant", bdd, user);
     }
 
 }
+

@@ -10,19 +10,16 @@ import java.awt.event.*;
  *
  * @author valentinbocquel
  */
-public class BoutonPost implements ActionListener {
+public class BoutonAjouterListeEntreprises implements ActionListener {
 
     MySQLConnexion bdd;
-    String[] user;
     
-    public BoutonPost(MySQLConnexion BDDConnexion, String[] paramUser) {
+    public BoutonAjouterListeEntreprises(MySQLConnexion BDDConnexion) {
         bdd = BDDConnexion;
-        user = paramUser;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelPost(bdd, user);
+        Fenetre.panelEntreprise(bdd, "");
     }
 
 }
-

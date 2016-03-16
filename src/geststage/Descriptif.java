@@ -19,7 +19,7 @@ public class Descriptif extends JPanel {
     JButton postuler, retour;
 
     /* Affichage de l'accueil */
-    public Descriptif(MySQLConnexion BDDConnexion, String[] offre) {
+    public Descriptif(MySQLConnexion BDDConnexion, String[] offre, String[] user, boolean estPost) {
         
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -41,7 +41,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoLibelle, gbc);
+        //add(infoLibelle, gbc);
         
         libelle = new JLabel(offre[1]);
         gbc.gridx = 1;
@@ -54,7 +54,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoDesc, gbc);
+        //add(infoDesc, gbc);
         
         desc = new JLabel(offre[2]);
         gbc.gridx = 1;
@@ -67,7 +67,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoDomaine, gbc);
+        //add(infoDomaine, gbc);
         
         domaine = new JLabel(offre[3]);
         gbc.gridx = 1;
@@ -80,7 +80,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 4;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoDate, gbc);
+        //add(infoDate, gbc);
         
         date = new JLabel(offre[4]);
         gbc.gridx = 1;
@@ -93,7 +93,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoDuree, gbc);
+        //add(infoDuree, gbc);
         
         duree = new JLabel(offre[5]);
         gbc.gridx = 1;
@@ -106,7 +106,7 @@ public class Descriptif extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 6;
         gbc.insets = new Insets(0, 10, 0, 0);
-        add(infoChemin, gbc);
+        //add(infoChemin, gbc);
         
         chemin = new JLabel(offre[6]);
         gbc.gridx = 1;
@@ -115,23 +115,36 @@ public class Descriptif extends JPanel {
         add(chemin, gbc);
         
         // Boutons
-        postuler = new JButton("Connexion");
+        postuler = new JButton("Postuler");
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 7;
         gbc.weightx = 0;
         gbc.gridwidth = 1;
         gbc.insets = new Insets(5, 0, 10, 10);
         add(postuler, gbc);
         
-        retour = new JButton("Inscription");
+        retour = new JButton("Retour");
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 7;
         gbc.weightx = 0;
         gbc.gridwidth = 1;
         gbc.insets = new Insets(5, 0, 10, 10);
         add(retour, gbc);
         
-        //postuler.addActionListener(new BoutonPostuler(offre));
-        //retour.addActionListener(new BoutonRetourPostul(BDDConnexion));
+        if (estPost) {
+            // Si postulé
+            postuler.setText("Retirer");
+            System.out.println("Tableau Offre");
+            for(int i=0; i<9; i++) {
+                System.out.println(offre[i]);
+            }
+            postuler.addActionListener(new BoutonRetirerPost(BDDConnexion, offre, user));
+            retour.addActionListener(new BoutonRetourPostul(BDDConnexion, user));
+        } else {
+            // Non postulé
+            postuler.addActionListener(new BoutonPostuler(BDDConnexion, offre, user));
+            retour.addActionListener(new BoutonRetourOffre(BDDConnexion, user));
+        }
+        
     }
 }

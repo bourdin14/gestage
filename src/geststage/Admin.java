@@ -14,9 +14,9 @@ import java.awt.*;
  */
 public class Admin extends JPanel {
 
-    JButton listeEntr, listeOffr, listeDem;
+    JButton listeEntr, listeOffr, listeDem, deconnexion;
 
-    public Admin(MySQLConnexion BDDConnexion) {
+    public Admin(MySQLConnexion BDDConnexion, String[] user) {
 
         setBackground(Color.orange);
 
@@ -47,9 +47,18 @@ public class Admin extends JPanel {
         gbc.insets = new Insets(5, 0, 10, 10);
         add(listeDem, gbc);
         
-        listeEntr.addActionListener(new BoutonListe(true, "entreprise", BDDConnexion));
-        listeOffr.addActionListener(new BoutonListe(true, "offre", BDDConnexion));
+        deconnexion = new JButton("Deconnexion");
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.weightx = 0;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(5, 0, 10, 10);
+        add(deconnexion, gbc);
+        
+        listeEntr.addActionListener(new BoutonListe(true, "entreprise", BDDConnexion, user));
+        listeOffr.addActionListener(new BoutonListe(true, "offre", BDDConnexion, user));
         listeDem.addActionListener(new BoutonDem(BDDConnexion));
+        deconnexion.addActionListener(new BoutonDeconnexion(BDDConnexion));
     }
 
 }

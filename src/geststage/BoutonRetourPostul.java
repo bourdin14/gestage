@@ -10,12 +10,12 @@ import java.awt.event.*;
  *
  * @author valentinbocquel
  */
-public class BoutonPost implements ActionListener {
+public class BoutonRetourPostul implements ActionListener {
 
     MySQLConnexion bdd;
     String[] user;
     
-    public BoutonPost(MySQLConnexion BDDConnexion, String[] paramUser) {
+    public BoutonRetourPostul(MySQLConnexion BDDConnexion, String[] paramUser) {
         bdd = BDDConnexion;
         user = paramUser;
     }

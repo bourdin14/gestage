@@ -10,19 +10,24 @@ import java.awt.event.*;
  *
  * @author valentinbocquel
  */
-public class BoutonPost implements ActionListener {
+public class BoutonSupprListeEntreprises implements ActionListener {
 
     MySQLConnexion bdd;
+    String[] entreprise = new String[7];
     String[] user;
+    int ind;
     
-    public BoutonPost(MySQLConnexion BDDConnexion, String[] paramUser) {
+    public BoutonSupprListeEntreprises(MySQLConnexion BDDConnexion, int paramInd, String[][] liste, String[] paramUser) {
         bdd = BDDConnexion;
         user = paramUser;
+        for (int i=0; i<7; i++) {
+            entreprise[i] = liste[i][ind];
+        }
+        
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelPost(bdd, user);
+        Fenetre.panelListe(true, "entreprise", bdd, user);
     }
 
 }
-

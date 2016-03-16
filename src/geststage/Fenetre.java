@@ -18,7 +18,7 @@ public class Fenetre extends JFrame {
     private static JPanel content;
     private static CardLayout cardLayout;
     static JPanel[] panels = new JPanel[9];
-    MySQLConnexion BDDConnexion = new MySQLConnexion();
+    MySQLConnexion BDDConnexion;
 
     /* Creation de la fenetre et des CardLayout */
     public Fenetre() {
@@ -46,14 +46,14 @@ public class Fenetre extends JFrame {
         cardLayout.show(content, "Login");
     }
     
-    public static void panelAdmin(MySQLConnexion BDDConnexion) {
-        panels[1] = new Admin(BDDConnexion);
+    public static void panelAdmin(MySQLConnexion BDDConnexion, String[] user) {
+        panels[1] = new Admin(BDDConnexion, user);
         content.add(panels[1], "Admin");
         cardLayout.show(content, "Admin");
     }
     
-    public static void panelListe(boolean isAdmin, String typeListe, MySQLConnexion BDDConnexion) {
-        panels[2] = new Liste(isAdmin, typeListe, BDDConnexion);
+    public static void panelListe(boolean isAdmin, String typeListe, MySQLConnexion BDDConnexion, String[] user) {
+        panels[2] = new Liste(isAdmin, typeListe, BDDConnexion, user);
         content.add(panels[2], "Liste");
         cardLayout.show(content, "Liste");
     }
@@ -64,14 +64,14 @@ public class Fenetre extends JFrame {
         cardLayout.show(content, "Demande");
     }
     
-    public static void panelEtudiant(int id, MySQLConnexion BDDConnexion) {
-        panels[4] = new Etudiant(id, BDDConnexion);
+    public static void panelEtudiant(int id, MySQLConnexion BDDConnexion, String[] user) {
+        panels[4] = new Etudiant(id, BDDConnexion, user);
         content.add(panels[4], "Etudiant");
         cardLayout.show(content, "Etudiant");
     }
     
-    public static void panelPost(int id, MySQLConnexion BDDConnexion) {
-        panels[5] = new Post(id, BDDConnexion);
+    public static void panelPost(MySQLConnexion BDDConnexion, String[] user) {
+        panels[5] = new Post(BDDConnexion, user);
         content.add(panels[5], "Post");
         cardLayout.show(content, "Post");
     }
@@ -82,10 +82,16 @@ public class Fenetre extends JFrame {
         cardLayout.show(content, "Inscription");
     }
     
-    public static void panelDescriptif(MySQLConnexion BDDConnexion, String[] offre) {
-        panels[7] = new Descriptif(BDDConnexion, offre);
+    public static void panelDescriptif(MySQLConnexion BDDConnexion, String[] offre, String[] user, boolean estPost) {
+        panels[7] = new Descriptif(BDDConnexion, offre, user, estPost);
         content.add(panels[7], "Descriptif");
         cardLayout.show(content, "Descriptif");
+    }
+    
+    public static void panelEntreprise(MySQLConnexion BDDConnexion, String id) {
+        panels[8] = new Entreprise(BDDConnexion, id);
+        content.add(panels[8], "Entreprise");
+        cardLayout.show(content, "Entreprise");
     }
    
 }

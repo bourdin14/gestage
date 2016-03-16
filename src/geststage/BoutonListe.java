@@ -13,17 +13,19 @@ import java.awt.event.*;
 public class BoutonListe implements ActionListener {
 
     String typeListe;
+    String[] user;
     boolean isAdmin;
     MySQLConnexion bdd;
     
-    public BoutonListe(boolean paramIsAdmin, String paramTypeListe, MySQLConnexion BDDConnexion) {
+    public BoutonListe(boolean paramIsAdmin, String paramTypeListe, MySQLConnexion BDDConnexion, String[] paramUser) {
         typeListe = paramTypeListe;
         isAdmin = paramIsAdmin;
         bdd = BDDConnexion;
+        user = paramUser;
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelListe(isAdmin, typeListe, bdd);
+        Fenetre.panelListe(isAdmin, typeListe, bdd, user);
     }
 
 }
