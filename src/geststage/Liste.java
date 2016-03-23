@@ -30,7 +30,7 @@ public class Liste extends JPanel {
             if (typeListe.equalsIgnoreCase("entreprise")) {
                 
                 // Affichage du titre
-                titre = new JLabel("Liste Entreprise Admin");
+                titre = new JLabel("Liste des entreprises");
                 Font font = new Font("Arial", Font.PLAIN, 25);
                 titre.setFont(font);
                 gbc.gridx = 0;
@@ -69,7 +69,7 @@ public class Liste extends JPanel {
                     boutonsSuppr[i] = new JButton("Supprimer");
                     espaceListe.add(boutonsSuppr[i], gbcEspaceListe);
                     
-                    boutonsEdit[i].addActionListener(new BoutonEditerListeEntreprises(BDDConnexion, i, liste));
+                    boutonsEdit[i].addActionListener(new BoutonEditerListeEntreprises(BDDConnexion, i, liste, user));
                     boutonsSuppr[i].addActionListener(new BoutonSupprListeEntreprises(BDDConnexion, i, liste, user));                       
                 }
                 
@@ -84,7 +84,7 @@ public class Liste extends JPanel {
                 gbc.gridwidth = 1;
                 gbc.insets = new Insets(5, 0, 10, 10);
                 add(ajouter, gbc);
-                ajouter.addActionListener(new BoutonAjouterListeEntreprises(BDDConnexion));
+                ajouter.addActionListener(new BoutonAjouterListeEntreprises(BDDConnexion, user));
                 
                 retour = new JButton("Retour");
                 gbc.gridx = 1;
@@ -95,7 +95,7 @@ public class Liste extends JPanel {
                 add(retour, gbc);
                 
             } else {
-                titre = new JLabel("Liste Offres Admin");
+                titre = new JLabel("Liste des offres de stage");
                 Font font = new Font("Arial", Font.PLAIN, 25);
                 titre.setFont(font);
                 gbc.gridx = 0;
@@ -104,7 +104,62 @@ public class Liste extends JPanel {
                 gbc.insets = new Insets(20, 20, 20, 20);
                 add(titre, gbc);
                 gbc.gridwidth = 1;
-            }
+                
+                // Affiche la liste des offres
+                espaceListe = new JPanel();
+                espaceListe.setLayout(new GridBagLayout());
+                GridBagConstraints gbcEspaceListe = new GridBagConstraints();
+                espaceScroll = new JScrollPane(espaceListe);
+                espaceScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+                espaceScroll.setPreferredSize(new Dimension(500, 250));
+
+                // Affichage du bouton selectionner
+                String[][] liste = new String[9][];
+                JButton[] boutonsEdit = new JButton[BDDConnexion.getNombreOffres(user)];
+                JButton[] boutonsSuppr = new JButton[BDDConnexion.getNombreOffres(user)];
+                liste = BDDConnexion.getListeOffres(user);
+                for (int i=0; i<BDDConnexion.getNombreOffres(user); i++) {
+                    gbcEspaceListe.insets = new Insets(2, 2, 2, 2);
+                    gbcEspaceListe.gridx=0;
+                    gbcEspaceListe.gridy=i;
+                    espaceListe.add(new JLabel(liste[1][i]), gbcEspaceListe);
+                    
+                    gbcEspaceListe.gridx=1;
+                    gbcEspaceListe.gridy=i;
+                    boutonsEdit[i] = new JButton("Editer");
+                    espaceListe.add(boutonsEdit[i], gbcEspaceListe);
+                    
+                    gbcEspaceListe.gridx=2;
+                    gbcEspaceListe.gridy=i;
+                    boutonsSuppr[i] = new JButton("Supprimer");
+                    espaceListe.add(boutonsSuppr[i], gbcEspaceListe);
+                    
+                    boutonsEdit[i].addActionListener(new BoutonEditerListeOffres(BDDConnexion, i, liste, user));
+                    //boutonsSuppr[i].addActionListener(new BoutonSupprListeOffres(BDDConnexion, i, liste, user));                       
+                }
+                
+                gbc.gridx = 0;
+                gbc.gridy = 1;
+                add(espaceScroll, gbc);
+                
+                ajouter = new JButton("Ajouter");
+                gbc.gridx = 0;
+                gbc.gridy = 2;
+                gbc.weightx = 0;
+                gbc.gridwidth = 1;
+                gbc.insets = new Insets(5, 0, 10, 10);
+                add(ajouter, gbc);
+                ajouter.addActionListener(new BoutonAjouterListeEntreprises(BDDConnexion, user));
+                
+                retour = new JButton("Retour");
+                gbc.gridx = 1;
+                gbc.gridy = 2;
+                gbc.weightx = 0;
+                gbc.gridwidth = 1;
+                gbc.insets = new Insets(5, 0, 10, 10);
+                add(retour, gbc);
+            
+            } 
         } else {
             // Affiche Titre
             titre = new JLabel("Liste Offres etudiant");

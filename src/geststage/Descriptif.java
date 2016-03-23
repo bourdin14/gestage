@@ -14,9 +14,8 @@ import java.awt.*;
  */
 public class Descriptif extends JPanel {
 
-    JLabel infoLibelle, infoDesc, infoDomaine, infoDate, infoDuree, infoChemin;
-    JLabel titre, libelle, desc, domaine, date, duree, chemin;
-    JButton postuler, retour;
+    JLabel titre, infoLibelle, infoDesc, infoDomaine, infoDate, infoDuree, infoChemin;
+    JButton editer, postuler, retour;
 
     /* Affichage de l'accueil */
     public Descriptif(MySQLConnexion BDDConnexion, String[] offre, String[] user, boolean estPost) {
@@ -35,116 +34,218 @@ public class Descriptif extends JPanel {
         gbc.gridwidth = 2;
         gbc.insets = new Insets(20, 20, 20, 20);
         add(titre, gbc);
+        
+        if (user[1].equals("0")) {
+            JLabel libelle, desc, domaine, date, duree, chemin;
+            // Affichage du libelle
+            infoLibelle = new JLabel("Titre");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoLibelle, gbc);
 
-        // Affichage du libelle
-        infoLibelle = new JLabel("Titre");
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoLibelle, gbc);
-        
-        libelle = new JLabel(offre[1]);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(libelle, gbc);
+            libelle = new JLabel(offre[1]);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(libelle, gbc);
 
-        // Affichage de la description
-        infoDesc = new JLabel("Description");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoDesc, gbc);
-        
-        desc = new JLabel(offre[2]);
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(desc, gbc);
-        
-        // Affichage du domaine
-        infoDomaine = new JLabel("Domaine");
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoDomaine, gbc);
-        
-        domaine = new JLabel(offre[3]);
-        gbc.gridx = 1;
-        gbc.gridy = 3;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(domaine, gbc);
+            // Affichage de la description
+            infoDesc = new JLabel("Description");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDesc, gbc);
 
-        // Affichage date du debut
-        infoDate = new JLabel("Date de debut");
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoDate, gbc);
-        
-        date = new JLabel(offre[4]);
-        gbc.gridx = 1;
-        gbc.gridy = 4;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(date, gbc);
+            desc = new JLabel(offre[2]);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(desc, gbc);
 
-        // Affichage duree
-        infoDuree = new JLabel("Duree");
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoDuree, gbc);
-        
-        duree = new JLabel(offre[5]);
-        gbc.gridx = 1;
-        gbc.gridy = 5;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(duree, gbc);
-        
-        // Affichage chemin
-        infoChemin = new JLabel("Chemin");
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        //add(infoChemin, gbc);
-        
-        chemin = new JLabel(offre[6]);
-        gbc.gridx = 1;
-        gbc.gridy = 6;
-        gbc.insets = new Insets(0, 10, 0, 0);
-        add(chemin, gbc);
-        
-        // Boutons
-        postuler = new JButton("Postuler");
-        gbc.gridx = 0;
-        gbc.gridy = 7;
-        gbc.weightx = 0;
-        gbc.gridwidth = 1;
-        gbc.insets = new Insets(5, 0, 10, 10);
-        add(postuler, gbc);
-        
-        retour = new JButton("Retour");
-        gbc.gridx = 1;
-        gbc.gridy = 7;
-        gbc.weightx = 0;
-        gbc.gridwidth = 1;
-        gbc.insets = new Insets(5, 0, 10, 10);
-        add(retour, gbc);
-        
-        if (estPost) {
-            // Si postulé
-            postuler.setText("Retirer");
-            System.out.println("Tableau Offre");
-            for(int i=0; i<9; i++) {
-                System.out.println(offre[i]);
+            // Affichage du domaine
+            infoDomaine = new JLabel("Domaine");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDomaine, gbc);
+
+            domaine = new JLabel(offre[3]);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(domaine, gbc);
+
+            // Affichage date du debut
+            infoDate = new JLabel("Date de debut");
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDate, gbc);
+
+            date = new JLabel(offre[4]);
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(date, gbc);
+
+            // Affichage duree
+            infoDuree = new JLabel("Duree");
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDuree, gbc);
+
+            duree = new JLabel(offre[5]);
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(duree, gbc);
+
+            // Affichage chemin
+            infoChemin = new JLabel("Chemin");
+            gbc.gridx = 0;
+            gbc.gridy = 6;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoChemin, gbc);
+
+            chemin = new JLabel(offre[6]);
+            gbc.gridx = 1;
+            gbc.gridy = 6;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(chemin, gbc);
+
+            // Boutons
+            postuler = new JButton("Postuler");
+            gbc.gridx = 0;
+            gbc.gridy = 7;
+            gbc.weightx = 0;
+            gbc.gridwidth = 1;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            add(postuler, gbc);
+
+            retour = new JButton("Retour");
+            gbc.gridx = 1;
+            gbc.gridy = 7;
+            gbc.weightx = 0;
+            gbc.gridwidth = 1;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            add(retour, gbc);
+
+            if (estPost) {
+                // Si postulé
+                postuler.setText("Retirer");
+                System.out.println("Tableau Offre");
+                for(int i=0; i<9; i++) {
+                    System.out.println(offre[i]);
+                }
+                postuler.addActionListener(new BoutonRetirerPost(BDDConnexion, offre, user));
+                retour.addActionListener(new BoutonRetourPostul(BDDConnexion, user));
+            } else {
+                // Non postulé
+                postuler.addActionListener(new BoutonPostuler(BDDConnexion, offre, user));
+                retour.addActionListener(new BoutonRetourOffre(BDDConnexion, user));
             }
-            postuler.addActionListener(new BoutonRetirerPost(BDDConnexion, offre, user));
-            retour.addActionListener(new BoutonRetourPostul(BDDConnexion, user));
         } else {
-            // Non postulé
-            postuler.addActionListener(new BoutonPostuler(BDDConnexion, offre, user));
-            retour.addActionListener(new BoutonRetourOffre(BDDConnexion, user));
+            JTextField libelle, desc, domaine, date, duree, chemin;
+            // Affichage du libelle
+            infoLibelle = new JLabel("Titre");
+            gbc.gridx = 0;
+            gbc.gridy = 1;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoLibelle, gbc);
+
+            libelle = new JTextField(offre[1], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 1;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(libelle, gbc);
+
+            // Affichage de la description
+            infoDesc = new JLabel("Description");
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDesc, gbc);
+
+            desc = new JTextField(offre[2], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(desc, gbc);
+
+            // Affichage du domaine
+            infoDomaine = new JLabel("Domaine");
+            gbc.gridx = 0;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDomaine, gbc);
+
+            domaine = new JTextField(offre[3], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(domaine, gbc);
+
+            // Affichage date du debut
+            infoDate = new JLabel("Date de debut");
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDate, gbc);
+
+            date = new JTextField(offre[4], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 4;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(date, gbc);
+
+            // Affichage duree
+            infoDuree = new JLabel("Duree");
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoDuree, gbc);
+
+            duree = new JTextField(offre[5], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(duree, gbc);
+
+            // Affichage chemin
+            infoChemin = new JLabel("Chemin");
+            gbc.gridx = 0;
+            gbc.gridy = 6;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            //add(infoChemin, gbc);
+
+            chemin = new JTextField(offre[6], 20);
+            gbc.gridx = 1;
+            gbc.gridy = 6;
+            gbc.insets = new Insets(0, 10, 0, 0);
+            add(chemin, gbc);
+
+            // Boutons
+            editer = new JButton("Editer");
+            gbc.gridx = 0;
+            gbc.gridy = 7;
+            gbc.weightx = 0;
+            gbc.gridwidth = 1;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            add(editer, gbc);
+
+            retour = new JButton("Retour");
+            gbc.gridx = 1;
+            gbc.gridy = 7;
+            gbc.weightx = 0;
+            gbc.gridwidth = 1;
+            gbc.insets = new Insets(5, 0, 10, 10);
+            add(retour, gbc);
+            
+            editer.addActionListener(new BoutonEditerOffre(BDDConnexion, offre[0], libelle, desc, domaine, date, duree, chemin));
+            //retour.addActionListener(new BoutonRetourListeOffres(BDDConnexion, user));
+            
         }
-        
     }
 }

@@ -88,8 +88,8 @@ public class Fenetre extends JFrame {
         cardLayout.show(content, "Descriptif");
     }
     
-    public static void panelEntreprise(MySQLConnexion BDDConnexion, String id) {
-        panels[8] = new Entreprise(BDDConnexion, id);
+    public static void panelEntreprise(MySQLConnexion BDDConnexion, String id, String[] user) {
+        panels[8] = new Entreprise(BDDConnexion, id, user);
         content.add(panels[8], "Entreprise");
         cardLayout.show(content, "Entreprise");
     }

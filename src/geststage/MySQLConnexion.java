@@ -295,5 +295,34 @@ class MySQLConnexion {
         }
         return entreprise;
     }
+    
+    public void addEntreprise(String nom, String raison, String ville, String code, String telephone, String domaine) {
+	try {
+            declaration.executeUpdate("INSERT INTO entreprise(raisonSociale, ville, codePostal, telephone, domaine, nom)"
+                                    + " VALUES ('"+raison+"', '"+ville+"', '"+code+"', '"+telephone+"', '"+domaine+"', '"+nom+"')");
+	} catch (SQLException e) {
+            System.err.println("Echec de l'insertion dans entreprise !");
+            System.exit(1);
+	}
+    }
+
+    public void updateEntreprise(String id, String nom, String raison, String ville, String code, String telephone, String domaine) {
+	try {
+            declaration.executeUpdate("UPDATE entreprise SET raisonSociale='"+raison+"', ville='"+ville+"', codePostal='"+code+"', telephone='"+telephone+"', domaine='"+domaine+"', nom='"+nom+"'"
+                                        + "WHERE id='"+id+"'");
+	} catch (SQLException e) {
+            System.err.println("Echec de la mise a jour de l'entreprise !");
+            System.exit(1);
+	}
+    }
+
+    public void deleteEntreprise(String id) {
+	try {
+            declaration.executeUpdate("DELETE FROM entreprise WHERE id='"+id+"'");
+	} catch (SQLException e) {
+            System.err.println("Echec de la suppression de l'entreprise !");
+            System.exit(1);
+	}
+    }
 
 }

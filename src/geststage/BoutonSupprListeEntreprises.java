@@ -15,9 +15,9 @@ public class BoutonSupprListeEntreprises implements ActionListener {
     MySQLConnexion bdd;
     String[] entreprise = new String[7];
     String[] user;
-    int ind;
+    int choix;
     
-    public BoutonSupprListeEntreprises(MySQLConnexion BDDConnexion, int paramInd, String[][] liste, String[] paramUser) {
+    public BoutonSupprListeEntreprises(MySQLConnexion BDDConnexion, int ind, String[][] liste, String[] paramUser) {
         bdd = BDDConnexion;
         user = paramUser;
         for (int i=0; i<7; i++) {
@@ -27,7 +27,12 @@ public class BoutonSupprListeEntreprises implements ActionListener {
     }
     
     public void actionPerformed(ActionEvent e) {
-        Fenetre.panelListe(true, "entreprise", bdd, user);
+        choix = JOptionPane.showConfirmDialog(null, "\u00EAtes vous sur de vouloir supprimer cette entreprise ?"); // j'affiche un popup.
+        if (choix==0) {
+            bdd.deleteEntreprise(entreprise[0]);
+            JOptionPane.showMessageDialog(null, "L'entreprise a bien \u00E9t\u00E9 supprim\u00E9 !", "Information", JOptionPane.INFORMATION_MESSAGE); // j'affiche un popup.
+            Fenetre.panelListe(true, "entreprise", bdd, user);
+        }
     }
 
 }
