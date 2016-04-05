@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost:8889
--- Généré le :  Mer 17 Février 2016 à 12:13
+-- Généré le :  Mar 05 Avril 2016 à 13:56
 -- Version du serveur :  5.5.42
 -- Version de PHP :  7.0.0
 
@@ -28,7 +28,15 @@ CREATE TABLE `entreprise` (
   `telephone` varchar(15) NOT NULL,
   `domaine` varchar(100) NOT NULL,
   `nom` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `entreprise`
+--
+
+INSERT INTO `entreprise` (`id`, `raisonSociale`, `ville`, `codePostal`, `telephone`, `domaine`, `nom`) VALUES
+(2, 'raison beta', 'Monterau', 77130, '0134762134', 'dev web', 'Dev Web Inc'),
+(5, 'SA', 'Fontainebleau', 77670, '0134634686', 'Industrie', 'Dev Java Inc');
 
 -- --------------------------------------------------------
 
@@ -41,7 +49,7 @@ CREATE TABLE `postulation` (
   `id_etudiant` int(11) NOT NULL,
   `id_stage` int(11) NOT NULL,
   `validé` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -59,7 +67,16 @@ CREATE TABLE `stage` (
   `chemin` varchar(200) NOT NULL,
   `valide` tinyint(1) NOT NULL,
   `id_entreprise` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Contenu de la table `stage`
+--
+
+INSERT INTO `stage` (`id`, `libelle`, `description`, `domaine`, `dateDebut`, `duree`, `chemin`, `valide`, `id_entreprise`) VALUES
+(3, 'Design site web', 'Designer le site web de client', 'Webdesign', '2016-03-14', 15, 'G D tout droit et enfin à gauche', 1, 2),
+(4, 'Développement Front End / Back End', 'Développement Front End / Back End du site de qqn', 'Développement web', '2016-04-03', 8, 'nulle part', 0, 2),
+(5, 'App Java', 'Développer une app sous java', 'dev', '2016-03-31', 3, 'Gauche puis à droite', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -72,14 +89,15 @@ CREATE TABLE `user` (
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `login` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `user`
 --
 
 INSERT INTO `user` (`id`, `isAdmin`, `login`, `password`) VALUES
-(2, 0, 'jean', '1234');
+(2, 0, 'jean', '1234'),
+(3, 1, 'groot', 'root');
 
 --
 -- Index pour les tables exportées
@@ -120,22 +138,22 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `entreprise`
 --
 ALTER TABLE `entreprise`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `postulation`
 --
 ALTER TABLE `postulation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `stage`
 --
 ALTER TABLE `stage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- Contraintes pour les tables exportées
 --
@@ -144,8 +162,8 @@ ALTER TABLE `user`
 -- Contraintes pour la table `postulation`
 --
 ALTER TABLE `postulation`
-  ADD CONSTRAINT `postulation_ibfk_2` FOREIGN KEY (`id_etudiant`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `postulation_ibfk_1` FOREIGN KEY (`id_stage`) REFERENCES `stage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `postulation_ibfk_1` FOREIGN KEY (`id_stage`) REFERENCES `stage` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `postulation_ibfk_2` FOREIGN KEY (`id_etudiant`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `stage`
